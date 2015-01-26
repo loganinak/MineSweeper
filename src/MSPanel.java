@@ -164,10 +164,10 @@ public class MSPanel extends JPanel {
         //floods the area around it
         MineSweeper.flood(xCord, yCord);
     }
-
-    //method for randomly deciding if a mine should be placed or not
-    public void layMines() {
-        mine = (int) (Math.random() * 10) == 0;
+    
+    //allows the mine value to be changed
+    public void setMine(boolean input) {
+        mine = input;
     }
 
 }

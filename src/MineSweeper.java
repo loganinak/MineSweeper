@@ -27,10 +27,15 @@ public class MineSweeper extends JFrame {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 board[x][y] = new MSPanel(x, y);
-                board[x][y].layMines();
                 add(board[x][y]);
             }
         }
+        //this lays a known number of mines in random places
+        /**
+         * Basically it will randomly choose spots and somehow keep track of where its placed mines.
+         * When it has placed the right amount of mines it will stop
+         * im thinking for loop and probably need a new variable in the MSPanel Class or maybe an array that will hold true false values that us equal to the size of the board
+         */
         
         //sets mineNum from the MSPanel class
         for (int y = 0; y < height; y++) {
@@ -96,6 +101,7 @@ public class MineSweeper extends JFrame {
             System.exit(0);
         }
     }
+    
 
     //starts the game
     public static void main(String[] args) {
