@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * This class is made to be instanced many times to make keeping track of clicks, flags, mines, and the number of mines around it super simple. 
  * For example instead of figuring out if a box was clicked based on the position of the mouse, each box will be a JPanel the will automatically know if it's been clicked.
+ * 
  * @author Logan
  */
 public class MSPanel extends JPanel {
