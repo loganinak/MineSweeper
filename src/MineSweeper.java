@@ -102,7 +102,6 @@ public class MineSweeper extends JFrame {
         }
     }
     
-
     //starts the game
     public static void main(String[] args) {
         MineSweeper game = new MineSweeper(10, 10);
