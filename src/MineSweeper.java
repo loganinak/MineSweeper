@@ -22,13 +22,24 @@ public class MineSweeper extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(width, height, 1, 1));
 
+        
         //builds the board
         board = new MSPanel[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 board[x][y] = new MSPanel(x, y);
-                board[x][y].layMines();
                 add(board[x][y]);
+            }
+        }
+        //this lays a known number of mines in random places
+        int targetMines = 10;
+        int laidMines = 0;
+        while(laidMines < targetMines) {
+            int x = (int)(Math.random()*(width));
+            int y = (int)(Math.random()*(height));
+            if(board[x][y].getMine() == 0) {
+                board[x][y].setMine(true);
+                laidMines++;
             }
         }
         
@@ -96,7 +107,7 @@ public class MineSweeper extends JFrame {
             System.exit(0);
         }
     }
-
+    
     //starts the game
     public static void main(String[] args) {
         MineSweeper game = new MineSweeper(10, 10);

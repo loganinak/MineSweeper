@@ -39,6 +39,8 @@ public class MSPanel extends JPanel {
     //The all important paint method
     @Override
     public void paint(Graphics g) {
+        //dev mode on/off
+        boolean dev = true;
         //changes font and gets prepared for centering
         Font f = new Font("Times", Font.PLAIN, 20);
         g.setFont(f);
@@ -56,6 +58,10 @@ public class MSPanel extends JPanel {
                 g.setColor(Color.RED);
                 int w = fm.stringWidth("!");
                 g.drawString("!", 20 - w / 2, 20 + a - h / 2);
+            }
+            if(dev == true && mine == true) {
+                g.setColor(Color.RED);
+            g.fillRect(0, 0, 40, 40);
             }
             //paints a red box if a mine is in that spot
         } else if (clicked == true && mine == true) {
@@ -164,10 +170,10 @@ public class MSPanel extends JPanel {
         //floods the area around it
         MineSweeper.flood(xCord, yCord);
     }
-
-    //method for randomly deciding if a mine should be placed or not
-    public void layMines() {
-        mine = (int) (Math.random() * 10) == 0;
+    
+    //allows the mine value to be changed
+    public void setMine(boolean input) {
+        mine = input;
     }
 
 }
