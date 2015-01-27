@@ -40,7 +40,7 @@ public class MSPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //dev mode on/off
-        boolean dev = true;
+        boolean dev = false;
         //changes font and gets prepared for centering
         Font f = new Font("Times", Font.PLAIN, 20);
         g.setFont(f);

@@ -3,17 +3,19 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This is the Main class for my Mine Sweeper game. 
- * This class is responsible for logic that needs information from or affects all the boxes on the mineSweeper JFrame.
+ * This is the Main class for my Mine Sweeper game. This class is responsible
+ * for logic that needs information from or affects all the boxes on the
+ * mineSweeper JFrame.
+ *
  * @author Logan
  */
-
 public class MineSweeper extends JFrame {
 
     static MSPanel[][] board;
 
     /**
      * Constructor method for the MineSweeper Class
+     *
      * @param width width of the board
      * @param height height of the board
      */
@@ -22,7 +24,6 @@ public class MineSweeper extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(width, height, 1, 1));
 
-        
         //builds the board
         board = new MSPanel[width][height];
         for (int y = 0; y < height; y++) {
@@ -32,17 +33,17 @@ public class MineSweeper extends JFrame {
             }
         }
         //this lays a known number of mines in random places
-        int targetMines = 10;
+        int targetMines = Integer.parseInt(JOptionPane.showInputDialog("Number of Mines"));
         int laidMines = 0;
-        while(laidMines < targetMines) {
-            int x = (int)(Math.random()*(width));
-            int y = (int)(Math.random()*(height));
-            if(board[x][y].getMine() == 0) {
+        while (laidMines < targetMines) {
+            int x = (int) (Math.random() * (width));
+            int y = (int) (Math.random() * (height));
+            if (board[x][y].getMine() == 0) {
                 board[x][y].setMine(true);
                 laidMines++;
             }
         }
-        
+
         //sets mineNum from the MSPanel class
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -107,10 +108,10 @@ public class MineSweeper extends JFrame {
             System.exit(0);
         }
     }
-    
+
     //starts the game
     public static void main(String[] args) {
-        MineSweeper game = new MineSweeper(10, 10);
+        MineSweeper game = new MineSweeper(Integer.parseInt(JOptionPane.showInputDialog("width")), Integer.parseInt(JOptionPane.showInputDialog("Height")));
     }
 
 }
