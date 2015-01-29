@@ -40,7 +40,7 @@ public class MSPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //dev mode on/off
-        boolean dev = true;
+        boolean dev = false;
         //changes font and gets prepared for centering
         Font f = new Font("Times", Font.PLAIN, 20);
         g.setFont(f);
@@ -163,12 +163,14 @@ public class MSPanel extends JPanel {
     }
 
     //Needed to change clicked when flooding when flooding
-    public void setClicked() {
+    public void setClicked(boolean flood) {
         System.out.println("virtual click");
         clicked = true;
         repaint();
         //floods the area around it
-        MineSweeper.flood(xCord, yCord);
+        if(flood == true){
+            MineSweeper.flood(xCord, yCord);
+        }
     }
     
     //allows the mine value to be changed
