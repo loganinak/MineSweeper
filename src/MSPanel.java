@@ -40,7 +40,7 @@ public class MSPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         //dev mode on/off
-        boolean dev = false;
+        boolean dev = true;
         //changes font and gets prepared for centering
         Font f = new Font("Times", Font.PLAIN, 20);
         g.setFont(f);
@@ -113,6 +113,9 @@ public class MSPanel extends JPanel {
                 System.out.println("left click");
                 clicked = true;
                 repaint();
+                if(MineSweeper.getClicked() == false) {
+                    MineSweeper.layMines(xCord, yCord);
+                }
                 //floods the board if there is no mines around it
                 if ("".equals(mineNumber)) {
                     MineSweeper.flood(xCord, yCord);
@@ -176,6 +179,7 @@ public class MSPanel extends JPanel {
     //allows the mine value to be changed
     public void setMine(boolean input) {
         mine = input;
+        repaint();
     }
 
 }
