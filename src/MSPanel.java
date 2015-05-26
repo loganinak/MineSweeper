@@ -72,7 +72,7 @@ public class MSPanel extends JPanel {
             int w = fm.stringWidth(mineNumber);
             g.setColor(new Color(186, 185, 177));
             g.fillRect(0, 0, 40, 40); 
-            g.setColor(Color.BLUE);
+            g.setColor(Color.blue);
             g.drawString(mineNumber, 20 - w / 2, 20 + a - h / 2);
         }
     }
