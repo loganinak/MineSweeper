@@ -113,9 +113,6 @@ public class MSPanel extends JPanel {
                 System.out.println("left click");
                 clicked = true;
                 repaint();
-                if(MineSweeper.getClicked() == false) {
-                    MineSweeper.layMines(xCord, yCord);
-                }
                 //floods the board if there is no mines around it
                 if ("".equals(mineNumber)) {
                     MineSweeper.flood(xCord, yCord);
@@ -179,7 +176,6 @@ public class MSPanel extends JPanel {
     //allows the mine value to be changed
     public void setMine(boolean input) {
         mine = input;
-        repaint();
     }
 
 }
