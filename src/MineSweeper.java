@@ -12,6 +12,7 @@ import java.awt.*;
 public class MineSweeper extends JFrame {
 
     static MSPanel[][] board;
+    static boolean clicked = false;
 
     /**
      * Constructor method for the MineSweeper Class
@@ -30,34 +31,6 @@ public class MineSweeper extends JFrame {
             for (int x = 0; x < width; x++) {
                 board[x][y] = new MSPanel(x, y);
                 add(board[x][y]);
-            }
-        }
-        //this lays a known number of mines in random places
-        int targetMines = 10;
-        int laidMines = 0;
-        while (laidMines < targetMines) {
-            int x = (int) (Math.random() * (width));
-            int y = (int) (Math.random() * (height));
-            if (board[x][y].getMine() == 0) {
-                board[x][y].setMine(true);
-                laidMines++;
-            }
-        }
-
-        //sets mineNum from the MSPanel class
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int count = 0;
-                //looks and counts the mines in the surrounding areas
-                for (int up = -1; up <= 1; up++) {
-                    for (int side = -1; side <= 1; side++) {
-                        if ((x + up < 0) || (x + up > width - 1) || (y + side < 0) || (y + side > height - 1)) {
-                        } else {
-                            count += board[x + up][y + side].getMine();
-                        }
-                    }
-                }
-                board[x][y].setNumber(count);
             }
         }
 
@@ -85,6 +58,38 @@ public class MineSweeper extends JFrame {
         }
     }
 
+    public static void layMines(int inX,int inY) {
+        //this lays a known number of mines in random places
+        int targetMines = 15;
+        int laidMines = 0;
+        while (laidMines < targetMines) {
+            int x = (int) (Math.random() * (board.length));
+            int y = (int) (Math.random() * (board[0].length));
+            if (board[x][y].getMine() == 0 && (x != inX || y != inY)) {
+                board[x][y].setMine(true);
+                laidMines++;
+            }
+        }
+
+        //sets mineNum from the MSPanel class
+        for (int y = 0; y < board[0].length; y++) {
+            for (int x = 0; x < board.length; x++) {
+                int count = 0;
+                //looks and counts the mines in the surrounding areas
+                for (int up = -1; up <= 1; up++) {
+                    for (int side = -1; side <= 1; side++) {
+                        if ((x + up < 0) || (x + up > board.length - 1) || (y + side < 0) || (y + side > board[0].length - 1)) {
+                        } else {
+                            count += board[x + up][y + side].getMine();
+                        }
+                    }
+                }
+                board[x][y].setNumber(count);
+            }
+        }
+        clicked = true;
+    }
+    
     //floods the board if the player clicks on a spot with zero mines surrounding it
     public static void flood(int x, int y) {
         if (board[x][y].getNum() == 0) {
@@ -113,6 +118,10 @@ public class MineSweeper extends JFrame {
             JOptionPane.showMessageDialog(null, "You Hit a Mine :(");
             System.exit(0);
         }
+    }
+    
+    public static boolean getClicked() {
+        return clicked;
     }
 
     //starts the game
